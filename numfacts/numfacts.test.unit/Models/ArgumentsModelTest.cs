@@ -7,6 +7,7 @@ namespace numfacts.test.unit.Models
     [TestClass]
     public class ArgumentsModelTest
     {
+        // Tests to make sure an empty model can be correctly instantiated.
         [TestMethod]
         public void ShouldCreateEmptyModel()
         {
@@ -18,6 +19,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(false, argumentsModel.TriviaFact);
         }
 
+        // Tests to make sure model instantiates correctly with a number and the trivia fact boolean.
         [TestMethod]
         public void ShouldHoldNumberIntegerAndTriviaFactBoolean()
         {
@@ -34,6 +36,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(true, argumentsModel.TriviaFact);
         }
 
+        // Tests to make sure model instantiates correctly with a number and the math fact boolean.
         [TestMethod]
         public void ShouldHoldNumberIntegerAndMathFactBoolean()
         {
@@ -50,6 +53,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(false, argumentsModel.TriviaFact);
         }
 
+        // Tests to make sure model instantiates correctly with the random number and math fact booleans set.
         [TestMethod]
         public void ShouldHoldRandomNumberBooleanAndMathFactBoolean()
         {
@@ -64,6 +68,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(false, argumentsModel.TriviaFact);
         }
 
+        // Tests to make sure model instantiates correctly with the random number and trivia fact booleans set.
         [TestMethod]
         public void ShouldHoldRandomNumberBooleanAndTriviaFactBoolean()
         {
