@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\ArgumentsModelBuilder.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Models\ArgumentsModel.cs" />
     <Compile Include="Program.cs" />
