@@ -10,17 +10,6 @@ namespace numfacts.Workers
 {
     static class ArgumentsHandler
     {
-        public static bool ArgumentsWerePassedIn(string[] args)
-        {
-            // Check to make sure at least one argument has been passed in. If not, throw an exception.
-            if (args.Length == 0)
-            {
-                throw new Exception(Constants.HowToUse);
-            }
-
-            return true;
-        }
-        
         public static ArgumentsModel CreateArgumentsModelFromUserInput(string[] args)
         {
             // Create the model builder and begin the building process. Check for errors along the way.
@@ -30,45 +19,47 @@ namespace numfacts.Workers
             for (int i = 0; i < args.Length; i++)
             {
                 // If this is the first argument, try to parse it as an integer. 
-                bool numberSuccessfullyParsed = false;
-
                 if (i == 0)
                 {
-                    numberSuccessfullyParsed = int.TryParse(args[i], out int passedInNumber);
+                    bool numberSuccessfullyParsed = int.TryParse(args[i], out int passedInNumber);
 
                     if (numberSuccessfullyParsed)
                     {
                         argumentsModelBuilder.WithNumber(passedInNumber);
+                        continue;
                     }
                 }
 
-                // If the number didn't parse, or this isn't the first iteration of the loop,
-                // check for valid options and update model build accordingly.
-                if (!numberSuccessfullyParsed)
+                // Check for valid options and update model build accordingly.
+                switch (args[i])
                 {
-                    switch (args[i])
-                    {
-                        case Constants.RandomNumberFlag:
-                            argumentsModelBuilder.WithRandomNumber();
-                            break;
+                    case Constants.RandomNumberFlag:
+                        argumentsModelBuilder.WithRandomNumber();
+                        break;
 
-                        case Constants.MathFactFlag:
-                            argumentsModelBuilder.WithMathFact();
-                            break;
+                    case Constants.MathFactFlag:
+                        argumentsModelBuilder.WithMathFact();
+                        break;
 
-                        case Constants.TriviaFactFlag:
-                            argumentsModelBuilder.WithTriviaFact();
-                            break;
+                    case Constants.TriviaFactFlag:
+                        argumentsModelBuilder.WithTriviaFact();
+                        break;
 
-                        default:
-                            throw new Exception(Constants.InvalidInput + args[i]);
-                    }
+                    default:
+                        throw new ArgumentException(Constants.InvalidInput + args[i]);
                 }
             }
 
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
             return argumentsModel;
+        }
+
+        // This method makes sure the user provided a valid set of arguments. 
+        public static bool ValidateArgumentsModel(ArgumentsModel argumentsModel)
+        {         
+            // If we get to this point, the model should be valid.
+            return true;
         }
     }
 }
