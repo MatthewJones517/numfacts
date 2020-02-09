@@ -19,7 +19,7 @@ namespace numfacts
 
         public const string InvalidInput = "Error - Invalid number or attribute: ";
 
-        public const string BothRandomAndNumberProvided = "Error - You cannot specify both a number and request a random number".
+        public const string BothRandomAndNumberProvided = "Error - You cannot specify both a number and request a random number.";
 
         // Attributes
         public const string RandomNumberFlag = "/r";
