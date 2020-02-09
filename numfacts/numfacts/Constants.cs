@@ -17,7 +17,9 @@ namespace numfacts
                                        "\n\t /r - Choose a random number" +
                                        "\nIf no attributes are given a trivia fact is returned.";
 
-        public const string InvalidInput = "Invalid number or attribute: ";
+        public const string InvalidInput = "Error - Invalid number or attribute: ";
+
+        public const string BothRandomAndNumberProvided = "Error - You cannot specify both a number and request a random number".
 
         // Attributes
         public const string RandomNumberFlag = "/r";
