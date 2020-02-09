@@ -10,6 +10,16 @@ namespace numfacts.Workers
 {
     static class ArgumentsHandler
     {
+        // The default value for the number in the arguments model is int.minvalue. This would be a valid input from the
+        // user, so we can't reliably use that to detect whether or not the user passed in arguments.
+        public static void MakeSureAtLeastOneArgumentWasPassedIn(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                throw new ArgumentException(Constants.HowToUse);
+            }
+        }
+
         public static ArgumentsModel CreateArgumentsModelFromUserInput(string[] args)
         {
             // Create the model builder and begin the building process. Check for errors along the way.
