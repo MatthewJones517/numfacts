@@ -11,7 +11,7 @@ namespace numfacts
         // Error Messages
         public const string HowToUse = "Get a random fact for a whole number you specify. Usage:\n" +
                                        "numfacts [number] [attributes]" +
-                                       "Attributes: \n" +
+                                       "\n\nAttributes: \n" +
                                        "\n\t /m - Request a math fact." +
                                        "\n\t /t - Request a trivia fact." +
                                        "\n\t /r - Choose a random number";
