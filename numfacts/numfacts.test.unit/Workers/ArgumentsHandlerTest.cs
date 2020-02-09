@@ -8,15 +8,6 @@ namespace numfacts.test.unit.Workers
     [TestClass]
     public class ArgumentsHandlerTest
     {
-        // If the user doesn't pass in any arguments at all, we should get an exception.
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ShouldThrowExceptionWhenNoArgumentIsPassedIn()
-        {
-            string[] args = new string[0];
-            ArgumentsHandler.MakeSureAtLeastOneArgumentWasPassedIn(args);
-        }
-
         // Should throw an exception if we provide an invalid argument
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
