@@ -11,6 +11,8 @@ namespace numfacts.Builders
     class ArgumentsModelBuilder
     {
         private int _number;
+        // Any valid integer can be provided to _number, so we need a separate boolean for validation later on.
+        private bool _numberProvided; 
         private bool _randomNumber;
         private bool _mathFact;
         private bool _triviaFact;
@@ -23,6 +25,7 @@ namespace numfacts.Builders
         private void SetDefaults()
         {
             _number = int.MinValue;
+            _numberProvided = false;
             _randomNumber = false;
             _mathFact = false;
             _triviaFact = false;
@@ -31,6 +34,7 @@ namespace numfacts.Builders
         public ArgumentsModelBuilder WithNumber(int num)
         {
             _number = num;
+            _numberProvided = true;
             return this;
         }
 
