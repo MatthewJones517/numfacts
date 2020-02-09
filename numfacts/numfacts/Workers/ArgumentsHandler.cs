@@ -56,14 +56,39 @@ namespace numfacts.Workers
         }
 
         // It's possible for the user to provide arguments that conflict with each other. This method throws 
-        // exceptions in these edge cases. 
+        // exceptions in these cases. 
         public static bool ValidateArgumentsModel(ArgumentsModel argumentsModel)
-        {   
+        {
+            // Respond with "how to use" if no arguments are provided.
+            if (!argumentsModel.NumberProvided && !argumentsModel.MathFact && !argumentsModel.TriviaFact && !argumentsModel.RandomNumber)
+            {
+                throw new ArgumentException(Constants.HowToUse);
+            }
+
             // Make sure we didn't both provide a number and request a random one
-            
+            if (argumentsModel.NumberProvided && argumentsModel.RandomNumber)
+            {
+                throw new ArgumentException(Constants.BothRandomAndNumberProvided);
+            }
+
+            // Make sure we either were given a number or a random number was requested.
+            if (!argumentsModel.NumberProvided && !argumentsModel.RandomNumber)
+            {
+                throw new ArgumentException(Constants.NeitherRandomOrNumberProvided);
+            }
+
             // Make sure we're not requesting both a math fact and a trivia fact. 
-            
-            // If we get to this point, the model should be valid.
+            if (argumentsModel.MathFact && argumentsModel.TriviaFact)
+            {
+                throw new ArgumentException(Constants.BothMathAndTriviaFactProvided);
+            }
+
+            // Make sure we're making a request for either a trivia or a math fact.
+            if (!argumentsModel.MathFact && !argumentsModel.TriviaFact)
+            {
+                throw new ArgumentException(Constants.NeitherMathOrTriviaFactProvided);
+            }
+
             return true;
         }
     }

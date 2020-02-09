@@ -8,7 +8,8 @@ namespace numfacts.test.unit.Workers
     [TestClass]
     public class ArgumentsHandlerTest
     {
-        // Should throw an exception if we provide an invalid argument
+        // CreateArgumentsModelFromUserInput tests
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenInvalidArgumentIsPassedIn()
@@ -17,7 +18,6 @@ namespace numfacts.test.unit.Workers
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
         }
 
-        // Should throw an exception if we put the number anywhere but the first argument.
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionIfNumberIsNotFirstArgument()
@@ -26,7 +26,6 @@ namespace numfacts.test.unit.Workers
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
         }
 
-        // Should create a model if a single number argument is passed in.
         [TestMethod]
         public void ShouldCreateModelWithSingleIntegerArgument()
         {
@@ -37,7 +36,6 @@ namespace numfacts.test.unit.Workers
             Assert.IsTrue(argumentsModel.NumberProvided);
         }
 
-        // Should create a model if all possible arguments are passed in
         [TestMethod]
         public void ShouldCreateModelWithAllPossibleArguments()
         {
@@ -49,6 +47,112 @@ namespace numfacts.test.unit.Workers
             Assert.IsTrue(argumentsModel.MathFact);
             Assert.IsTrue(argumentsModel.TriviaFact);
             Assert.IsTrue(argumentsModel.NumberProvided);
+        }
+
+        // ValidateArgumentsModel tests
+
+        [TestMethod]
+        public void ShouldConsiderModelValidWithNumberAndMathFact()
+        {
+            string[] args = new string[2] { "33", "/m" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+
+            Assert.IsTrue(modelIsValid);
+        }
+
+        [TestMethod]
+        public void ShouldConsiderModelValidWithNumberAndTriviaFact()
+        {
+            string[] args = new string[2] { "33", "/t" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+
+            Assert.IsTrue(modelIsValid);
+        }
+
+        [TestMethod]
+        public void ShouldConsiderModelValidWithRandomNumberAndMathFact()
+        {
+            string[] args = new string[2] { "/r", "/m" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+
+            Assert.IsTrue(modelIsValid);
+        }
+
+        [TestMethod]
+        public void ShouldConsiderModelValidWithRandomNumberAndTriviaFact()
+        {
+            string[] args = new string[2] { "/r", "/t" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+
+            Assert.IsTrue(modelIsValid);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldThrowExceptionWhenBothNumberAndRandomNumberAreRequested()
+        {
+            string[] args = new string[2] { "33", "/r" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldThrowExceptionWhenBothMathAndTriviaFactsAreRequested()
+        {
+            string[] args = new string[2] { "/m", "/t" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldThrowExceptionWhenNumberIsProvidedButFactIsNot()
+        {
+            string[] args = new string[1] { "33" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldThrowExceptionWhenRandomNumberIsRequestedButFactIsNot()
+        {
+            string[] args = new string[1] { "/r" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldThrowExceptionWhenMathFactIsProvidedButNumberIsNot()
+        {
+            string[] args = new string[1] { "/m" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldThrowExceptionWhenTriviaFactIsProvidedButNumberIsNot()
+        {
+            string[] args = new string[1] { "/t" };
+            ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
+
+            bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
         }
     }
 }
