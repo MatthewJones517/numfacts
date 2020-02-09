@@ -30,6 +30,7 @@ namespace numfacts.test.unit.Builders
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
             Assert.AreEqual(33, argumentsModel.Number);
+            Assert.IsTrue(argumentsModel.NumberProvided);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
             Assert.AreEqual(false, argumentsModel.TriviaFact);
@@ -44,6 +45,7 @@ namespace numfacts.test.unit.Builders
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
             Assert.AreEqual(int.MinValue, argumentsModel.Number);
+            Assert.IsFalse(argumentsModel.NumberProvided);
             Assert.AreEqual(true, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
             Assert.AreEqual(false, argumentsModel.TriviaFact);
@@ -58,6 +60,7 @@ namespace numfacts.test.unit.Builders
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
             Assert.AreEqual(int.MinValue, argumentsModel.Number);
+            Assert.IsFalse(argumentsModel.NumberProvided);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(true, argumentsModel.MathFact);
             Assert.AreEqual(false, argumentsModel.TriviaFact);
@@ -72,6 +75,7 @@ namespace numfacts.test.unit.Builders
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
             Assert.AreEqual(int.MinValue, argumentsModel.Number);
+            Assert.IsFalse(argumentsModel.NumberProvided);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
             Assert.AreEqual(true, argumentsModel.TriviaFact);

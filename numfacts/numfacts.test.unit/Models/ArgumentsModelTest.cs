@@ -17,6 +17,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
             Assert.AreEqual(false, argumentsModel.TriviaFact);
+            Assert.AreEqual(false, argumentsModel.NumberProvided);
         }
 
         // Tests to make sure model instantiates correctly with a number and the trivia fact boolean.
@@ -26,6 +27,7 @@ namespace numfacts.test.unit.Models
             ArgumentsModel argumentsModel = new ArgumentsModel();
 
             argumentsModel.Number = 33;
+            argumentsModel.NumberProvided = true;
             argumentsModel.RandomNumber = false;
             argumentsModel.MathFact = false;
             argumentsModel.TriviaFact = true;
@@ -34,6 +36,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
             Assert.AreEqual(true, argumentsModel.TriviaFact);
+            Assert.AreEqual(true, argumentsModel.NumberProvided);
         }
 
         // Tests to make sure model instantiates correctly with a number and the math fact boolean.
@@ -43,6 +46,7 @@ namespace numfacts.test.unit.Models
             ArgumentsModel argumentsModel = new ArgumentsModel();
 
             argumentsModel.Number = 33;
+            argumentsModel.NumberProvided = true;
             argumentsModel.RandomNumber = false;
             argumentsModel.MathFact = true;
             argumentsModel.TriviaFact = false;
@@ -51,6 +55,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(true, argumentsModel.MathFact);
             Assert.AreEqual(false, argumentsModel.TriviaFact);
+            Assert.AreEqual(true, argumentsModel.NumberProvided);
         }
 
         // Tests to make sure model instantiates correctly with the random number and math fact booleans set.
@@ -66,6 +71,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(true, argumentsModel.RandomNumber);
             Assert.AreEqual(true, argumentsModel.MathFact);
             Assert.AreEqual(false, argumentsModel.TriviaFact);
+            Assert.AreEqual(false, argumentsModel.NumberProvided);
         }
 
         // Tests to make sure model instantiates correctly with the random number and trivia fact booleans set.
@@ -81,6 +87,7 @@ namespace numfacts.test.unit.Models
             Assert.AreEqual(true, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
             Assert.AreEqual(true, argumentsModel.TriviaFact);
+            Assert.AreEqual(false, argumentsModel.NumberProvided);
         }
     }
 }

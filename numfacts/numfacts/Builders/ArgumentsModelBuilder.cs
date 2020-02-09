@@ -61,6 +61,7 @@ namespace numfacts.Builders
             ArgumentsModel argumentsModel = new ArgumentsModel();
 
             argumentsModel.Number = _number;
+            argumentsModel.NumberProvided = _numberProvided;
             argumentsModel.RandomNumber = _randomNumber;
             argumentsModel.MathFact = _mathFact;
             argumentsModel.TriviaFact = _triviaFact;

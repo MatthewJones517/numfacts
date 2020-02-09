@@ -34,6 +34,7 @@ namespace numfacts.test.unit.Workers
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
             Assert.AreEqual(33, argumentsModel.Number);
+            Assert.IsTrue(argumentsModel.NumberProvided);
         }
 
         // Should create a model if all possible arguments are passed in
@@ -47,6 +48,7 @@ namespace numfacts.test.unit.Workers
             Assert.IsTrue(argumentsModel.RandomNumber);
             Assert.IsTrue(argumentsModel.MathFact);
             Assert.IsTrue(argumentsModel.TriviaFact);
+            Assert.IsTrue(argumentsModel.NumberProvided);
         }
     }
 }
