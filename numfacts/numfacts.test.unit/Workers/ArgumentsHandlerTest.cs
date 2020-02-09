@@ -8,6 +8,60 @@ namespace numfacts.test.unit.Workers
     [TestClass]
     public class ArgumentsHandlerTest
     {
+        // BreakApartArguments tests
+        [TestMethod]
+        public void ShouldSeparateArgumentsWithNoSpaces()
+        {
+            string[] args = new string[1] { "/r/t" };
+            string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
+
+            Assert.AreEqual("/r", splitArguments[0]);
+            Assert.AreEqual("/t", splitArguments[1]);
+        }
+
+        [TestMethod]
+        public void ShouldSeparateArgumentsWithSpaces()
+        {
+            string[] args = new string[1] { "/r /t" };
+            string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
+
+            Assert.AreEqual("/r", splitArguments[0]);
+            Assert.AreEqual("/t", splitArguments[1]);
+        }
+
+        [TestMethod]
+        public void ShouldSeparateArgumentsInSeparateElements()
+        {
+            string[] args = new string[2] { "33" , "/r/t" };
+            string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
+
+            Assert.AreEqual("33", splitArguments[0]);
+            Assert.AreEqual("/r", splitArguments[1]);
+            Assert.AreEqual("/t", splitArguments[2]);
+        }
+
+        [TestMethod]
+        public void ShouldSeparateArgumentsInSeparateElementsWithSpaces()
+        {
+            string[] args = new string[2] { "33", "/r /t" };
+            string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
+
+            Assert.AreEqual("33", splitArguments[0]);
+            Assert.AreEqual("/r", splitArguments[1]);
+            Assert.AreEqual("/t", splitArguments[2]);
+        }
+
+        [TestMethod]
+        public void ShouldNotSeparateProperlySpacedElements()
+        {
+            string[] args = new string[3] { "33", "/r", "/t" };
+            string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
+
+            Assert.AreEqual("33", splitArguments[0]);
+            Assert.AreEqual("/r", splitArguments[1]);
+            Assert.AreEqual("/t", splitArguments[2]);
+        }
+
         // CreateArgumentsModelFromUserInput tests
 
         [TestMethod]

@@ -10,6 +10,31 @@ namespace numfacts.Workers
 {
     static class ArgumentsHandler
     {
+        // If the user puts a space between each argument "/r /t" this isn't needed, however most users don't
+        // do this, instead putting all arguments together "/r/t". When this happens we need to break them apart.
+        public static string[] BreakApartArguments(string[] args)
+        {
+            // We don't know how many elements we need, so instantiate a linked list.
+            List<string> returnArguments = new List<string>();
+
+            foreach (string argument in args)
+            {
+                if (argument.IndexOf('/') == -1) {
+                    returnArguments.Add(argument);
+                } else
+                {
+                    string[] splitArguments = argument.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (string splitArgument in splitArguments)
+                    {
+                        returnArguments.Add("/" + splitArgument.Trim());
+                    }
+                }
+            }
+
+            return returnArguments.ToArray();
+        }
+
         public static ArgumentsModel CreateArgumentsModelFromUserInput(string[] args)
         {
             // Create the model builder and begin the building process. Check for errors along the way.
