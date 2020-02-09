@@ -17,7 +17,7 @@ namespace numfacts
                                        "\n\t /r - Choose a random number";
 
         public const string InvalidInput = "Error - Invalid number or attribute: ";
-        public const string BothRandomAndNumberProvided = "Error - You cannot specify both a number and request a random number.";
+        public const string BothRandomAndNumberProvided = "Error - You cannot both specify a number and request a random number.";
         public const string NeitherRandomOrNumberProvided = "Error - You must specify either a number or request a random number.";
         public const string BothMathAndTriviaFactProvided = "Error - You cannot request both a math and trivia fact at the same time.";
         public const string NeitherMathOrTriviaFactProvided = "Error - You must specify either a math or a trivia fact.";
