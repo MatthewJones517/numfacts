@@ -58,20 +58,20 @@ namespace numfacts.Workers
                 // Check for valid options and update model build accordingly.
                 switch (args[i])
                 {
-                    case Constants.RandomNumberFlag:
+                    case Constants.RANDOM_NUMBER_FLAG:
                         argumentsModelBuilder.WithRandomNumber();
                         break;
 
-                    case Constants.MathFactFlag:
+                    case Constants.MATH_FACT_FLAG:
                         argumentsModelBuilder.WithMathFact();
                         break;
 
-                    case Constants.TriviaFactFlag:
+                    case Constants.TRIVIA_FACT_FLAG:
                         argumentsModelBuilder.WithTriviaFact();
                         break;
 
                     default:
-                        throw new ArgumentException(Constants.InvalidInput + args[i]);
+                        throw new ArgumentException(Constants.INVALID_INPUT + args[i]);
                 }
             }
 
@@ -87,31 +87,31 @@ namespace numfacts.Workers
             // Respond with "how to use" if no arguments are provided.
             if (!argumentsModel.NumberProvided && !argumentsModel.MathFact && !argumentsModel.TriviaFact && !argumentsModel.RandomNumber)
             {
-                throw new ArgumentException(Constants.HowToUse);
+                throw new ArgumentException(Constants.HOW_TO_USE);
             }
 
             // Make sure we didn't both provide a number and request a random one
             if (argumentsModel.NumberProvided && argumentsModel.RandomNumber)
             {
-                throw new ArgumentException(Constants.BothRandomAndNumberProvided);
+                throw new ArgumentException(Constants.BOTH_RANDOM_AND_NUMBER_PROVIDED);
             }
 
             // Make sure we either were given a number or a random number was requested.
             if (!argumentsModel.NumberProvided && !argumentsModel.RandomNumber)
             {
-                throw new ArgumentException(Constants.NeitherRandomOrNumberProvided);
+                throw new ArgumentException(Constants.NEITHER_RANDOM_OR_NUMBER_PROVIDED);
             }
 
             // Make sure we're not requesting both a math fact and a trivia fact. 
             if (argumentsModel.MathFact && argumentsModel.TriviaFact)
             {
-                throw new ArgumentException(Constants.BothMathAndTriviaFactProvided);
+                throw new ArgumentException(Constants.BOTH_MATH_AND_TRIVIA_FACT_PROVIDED);
             }
 
             // Make sure we're making a request for either a trivia or a math fact.
             if (!argumentsModel.MathFact && !argumentsModel.TriviaFact)
             {
-                throw new ArgumentException(Constants.NeitherMathOrTriviaFactProvided);
+                throw new ArgumentException(Constants.NEITHER_MATH_OR_TRIVIA_FACT_PROVIDED);
             }
 
             return true;
