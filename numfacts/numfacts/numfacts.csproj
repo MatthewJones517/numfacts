@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\APIResponseModelBuilder.cs" />
     <Compile Include="Builders\ArgumentsModelBuilder.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Models\APIResponseModel.cs" />
