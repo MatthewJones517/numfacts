@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Builders\ArgumentsModelBuilderTest.cs" />
     <Compile Include="Models\ArgumentsModelTest.cs" />
+    <Compile Include="Models\APIResponseModelTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Workers\ArgumentsHandlerTest.cs" />
