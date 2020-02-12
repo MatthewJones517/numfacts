@@ -20,5 +20,6 @@ namespace numfacts
         public const string NEITHER_RANDOM_OR_NUMBER_PROVIDED = "Error - You must specify either a number or request a random number.";
         public const string BOTH_MATH_AND_TRIVIA_FACT_PROVIDED = "Error - You cannot request both a math and trivia fact at the same time.";
         public const string NEITHER_MATH_OR_TRIVIA_FACT_PROVIDED = "Error - You must specify either a math or a trivia fact.";
+        public const string NO_FACT_FOUND = "The API couldn't find any facts for your number: ";
     }
 }
