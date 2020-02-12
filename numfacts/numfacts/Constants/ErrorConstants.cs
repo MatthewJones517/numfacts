@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace numfacts
 {
-    class Constants
+    class ErrorConstants
     {
-        // Error Messages
         public const string HOW_TO_USE = "Get a random fact for a whole number you specify. Usage:\n" +
                                        "numfacts [number] [attributes]" +
                                        "\n\nAttributes: \n" +
@@ -21,10 +20,5 @@ namespace numfacts
         public const string NEITHER_RANDOM_OR_NUMBER_PROVIDED = "Error - You must specify either a number or request a random number.";
         public const string BOTH_MATH_AND_TRIVIA_FACT_PROVIDED = "Error - You cannot request both a math and trivia fact at the same time.";
         public const string NEITHER_MATH_OR_TRIVIA_FACT_PROVIDED = "Error - You must specify either a math or a trivia fact.";
-
-        // Attributes
-        public const string RANDOM_NUMBER_FLAG = "/r";
-        public const string MATH_FACT_FLAG = "/m";
-        public const string TRIVIA_FACT_FLAG = "/t";
     }
 }
