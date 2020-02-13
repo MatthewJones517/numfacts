@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace numfacts.Models
 {
-    class APIResponseModel
+    // This model holds the response that is sent back to us from the API.
+    public class APIResponseModel
     {
         [DeserializeAs(Name = "text")]
         public string Text { get; set; }
