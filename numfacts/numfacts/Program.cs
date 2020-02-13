@@ -1,11 +1,8 @@
-﻿using numfacts.Models;
+﻿using numfacts.Constants;
+using numfacts.Models;
 using numfacts.Workers;
+using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace numfacts
 {
@@ -24,13 +21,22 @@ namespace numfacts
                 // Validate the arguments model before making the API request.
                 ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
 
+                // Notify the user that we're about to make an API request. 
+                Console.WriteLine(OutputConstants.API_LOADING);
+
                 // Make the API request. 
-                APIResponseModel apiResponseModel = NumfactsAPIClient.GetNumFact(argumentsModel);
+                NumfactsAPIClient numfactsAPIClient = new NumfactsAPIClient(
+                    new RestClient(
+                        NumfactsAPIClient.BuildAPIEndpointUrl(argumentsModel)
+                    )
+                );
+
+                APIResponseModel apiResponseModel = numfactsAPIClient.GetNumFact();
 
                 // Display the results to the user.
                 if (apiResponseModel.Found)
                 {
-                    Console.WriteLine(apiResponseModel.Text);
+                    Console.WriteLine(OutputConstants.FACT_DISPLAY_TEMPLATE, MathOrTriviaFactPrefix(apiResponseModel), apiResponseModel.Number, apiResponseModel.Text);
                 } else
                 {
                     throw new Exception(ErrorConstants.NO_FACT_FOUND + apiResponseModel.Number);
@@ -42,5 +48,17 @@ namespace numfacts
                 Console.WriteLine(ex.Message);
             }
         }
+
+        // Returns the appropriate output prefix for the fact depending on what the user requested.
+        private static string MathOrTriviaFactPrefix(APIResponseModel responseModel)
+        {
+            if (responseModel.Type == APIConstants.MATH_FACT)
+            {
+                return OutputConstants.MATH_FACT_PREFIX;
+            } else
+            {
+                return OutputConstants.TRIVIA_FACT_PREFIX;
+            }
+        } 
     }
 }
