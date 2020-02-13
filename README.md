@@ -14,4 +14,4 @@ Numfacts is a small demo console application I wrote to familiarize myself with 
 
 https://rapidapi.com/divad12/api/numbers-1s
 
-A functioning version of the program can be found in the /bin folder. Otherwise you'll need to sign up for an API key using the link above. 
+A functioning version of the program can be found in the /bin folder. Otherwise you'll need to sign up for an API key using the link above. Add it to the Constants/APIConstants.cs file.
