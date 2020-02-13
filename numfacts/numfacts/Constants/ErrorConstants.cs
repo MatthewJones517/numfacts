@@ -8,6 +8,7 @@ namespace numfacts
 {
     class ErrorConstants
     {
+        // Constants for the various error messages used throughout the application.
         public const string HOW_TO_USE = "Get a random fact for a whole number you specify. Usage:\n" +
                                        "numfacts [number] [attributes]" +
                                        "\n\nAttributes: \n" +
@@ -21,5 +22,6 @@ namespace numfacts
         public const string BOTH_MATH_AND_TRIVIA_FACT_PROVIDED = "Error - You cannot request both a math and trivia fact at the same time.";
         public const string NEITHER_MATH_OR_TRIVIA_FACT_PROVIDED = "Error - You must specify either a math or a trivia fact.";
         public const string NO_FACT_FOUND = "The API couldn't find any facts for your number: ";
+        public const string API_CONNECTION_ERROR = "There was an issue connecting to the API. Please wait a few minutes and try again.";
     }
 }
