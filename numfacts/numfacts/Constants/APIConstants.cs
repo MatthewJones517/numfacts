@@ -16,10 +16,13 @@ namespace numfacts.Constants
         public const string HEADER_HOST_VALUE = "numbersapi.p.rapidapi.com";
 
         // Endpoint Strings
-        public const string BASE_URL = "https://numbersapi.p.rapidapi.com/";
-        public const string RANDOM_NUMBER_ENDPOINT = "random";
-        public const string MATH_FACT_ENDPOINT = "math";
-        public const string TRIVIA_FACT_ENDPOINT = "trivia";
-        public const string JSON_AND_FRAGMENT_ENDPOINT = "?fragment=true&json=true";
+        public const string BASE_URL = "https://numbersapi.p.rapidapi.com";
+        public const string RANDOM_NUMBER = "random";
+        public const string MATH_FACT = "math";
+        public const string TRIVIA_FACT = "trivia";
+
+        // Parameter Strings
+        public const string FRAGMENT_PARAM = "fragment";
+        public const string JSON_PARAM = "json";
     }
 }

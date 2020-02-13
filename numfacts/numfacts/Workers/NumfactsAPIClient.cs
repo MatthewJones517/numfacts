@@ -1,49 +1,81 @@
 ﻿using numfacts.Constants;
 using numfacts.Models;
 using RestSharp;
-using System.Threading.Tasks;
+using System;
+using System.Net;
 
 namespace numfacts.Workers
 {
-    static class NumfactsAPIClient
+    public class NumfactsAPIClient
     {
-        public static APIResponseModel GetNumFact(ArgumentsModel argumentsModel)
+        private readonly IRestClient _client;
+
+        public NumfactsAPIClient(IRestClient client) 
         {
-            RestClient client = new RestClient(BuildAPIEndpointUrl(argumentsModel));
+            _client = client;
+        }
+
+        public APIResponseModel GetNumFact()
+        {
+            // Define return variable
+            APIResponseModel apiResponseModel = null;
+
+            // Instantiate RestClient and RestRequest objects.
             RestRequest request = new RestRequest(Method.GET);
+
+            // Add API authentication headers
             request.AddHeader(APIConstants.HEADER_HOST_NAME, APIConstants.HEADER_HOST_VALUE);
             request.AddHeader(APIConstants.HEADER_KEY_NAME, APIConstants.HEADER_KEY_VALUE);
 
-            IRestResponse<APIResponseModel> response = client.Execute<APIResponseModel>(request);
+            // Add parameters
+            request.AddParameter(APIConstants.FRAGMENT_PARAM, true, ParameterType.QueryString);
+            request.AddParameter(APIConstants.JSON_PARAM, true, ParameterType.QueryString);
 
-            return response.Data;
+            // Execute request
+            var response = _client.Execute<APIResponseModel>(request);
+
+            // Return data or throw exception
+            if (response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                apiResponseModel = response.Data;
+            } else
+            {
+                throw new Exception(ErrorConstants.API_CONNECTION_ERROR);
+            }
+
+            return apiResponseModel;
         }
 
-        private static string BuildAPIEndpointUrl(ArgumentsModel argumentsModel)
+        // Returns the endpoint url we need based upon the user's arguments.
+        public static string BuildAPIEndpointUrl(ArgumentsModel argumentsModel)
         {
-            string returnValue = APIConstants.BASE_URL;
+            return $"{APIConstants.BASE_URL}/{NumberOrRandomNumberEndpoint(argumentsModel)}/{MathOrTriviaFactEndpoint(argumentsModel)}";
+        }
 
+        // Returns either an endpoint with the user's number or the "random" endpoint.
+        private static string NumberOrRandomNumberEndpoint(ArgumentsModel argumentsModel)
+        {
             if (argumentsModel.RandomNumber)
             {
-                returnValue += APIConstants.RANDOM_NUMBER_ENDPOINT;
-            } else
-            {
-                returnValue += argumentsModel.Number.ToString();
+                return APIConstants.RANDOM_NUMBER;
             }
+            else
+            {
+                return argumentsModel.Number.ToString();
+            }
+        }
 
-            returnValue += "/";
-
+        // Returns endpoint for either a math or trivia fact.
+        private static string MathOrTriviaFactEndpoint(ArgumentsModel argumentsModel)
+        {
             if (argumentsModel.MathFact)
             {
-                returnValue += APIConstants.MATH_FACT_ENDPOINT;
-            } else
-            {
-                returnValue += APIConstants.TRIVIA_FACT_ENDPOINT;
+                return APIConstants.MATH_FACT;
             }
-
-            returnValue += APIConstants.JSON_AND_FRAGMENT_ENDPOINT;
-
-            return returnValue;
+            else
+            {
+                return APIConstants.TRIVIA_FACT;
+            }
         }
     }
 }
