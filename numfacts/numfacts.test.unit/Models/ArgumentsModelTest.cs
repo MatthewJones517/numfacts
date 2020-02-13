@@ -11,8 +11,10 @@ namespace numfacts.test.unit.Models
         [TestMethod]
         public void ShouldCreateEmptyModel()
         {
+            // Arrange / Act
             ArgumentsModel argumentsModel = new ArgumentsModel();
 
+            // Assert
             Assert.AreEqual(0, argumentsModel.Number);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
@@ -24,14 +26,17 @@ namespace numfacts.test.unit.Models
         [TestMethod]
         public void ShouldHoldNumberIntegerAndTriviaFactBoolean()
         {
+            // Arrange
             ArgumentsModel argumentsModel = new ArgumentsModel();
 
+            // Act
             argumentsModel.Number = 33;
             argumentsModel.NumberProvided = true;
             argumentsModel.RandomNumber = false;
             argumentsModel.MathFact = false;
             argumentsModel.TriviaFact = true;
 
+            // Assert
             Assert.AreEqual(33, argumentsModel.Number);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
@@ -43,14 +48,17 @@ namespace numfacts.test.unit.Models
         [TestMethod]
         public void ShouldHoldNumberIntegerAndMathFactBoolean()
         {
+            // Arrange
             ArgumentsModel argumentsModel = new ArgumentsModel();
 
+            // Act
             argumentsModel.Number = 33;
             argumentsModel.NumberProvided = true;
             argumentsModel.RandomNumber = false;
             argumentsModel.MathFact = true;
             argumentsModel.TriviaFact = false;
 
+            // Assert
             Assert.AreEqual(33, argumentsModel.Number);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(true, argumentsModel.MathFact);
@@ -78,12 +86,15 @@ namespace numfacts.test.unit.Models
         [TestMethod]
         public void ShouldHoldRandomNumberBooleanAndTriviaFactBoolean()
         {
+            // Arrange
             ArgumentsModel argumentsModel = new ArgumentsModel();
 
+            // Act
             argumentsModel.RandomNumber = true;
             argumentsModel.MathFact = false;
             argumentsModel.TriviaFact = true;
 
+            // Assert
             Assert.AreEqual(true, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
             Assert.AreEqual(true, argumentsModel.TriviaFact);

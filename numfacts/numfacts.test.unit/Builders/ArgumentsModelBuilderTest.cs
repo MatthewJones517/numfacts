@@ -12,9 +12,13 @@ namespace numfacts.test.unit.Builders
         [TestMethod]
         public void ShouldCreateModelWithBuilderDefaults()
         {
+            // Arrange
             ArgumentsModelBuilder argumentsModelBuilder = new ArgumentsModelBuilder();
+
+            // Act
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
+            // Assert
             Assert.AreEqual(int.MinValue, argumentsModel.Number);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
             Assert.AreEqual(false, argumentsModel.MathFact);
@@ -25,10 +29,14 @@ namespace numfacts.test.unit.Builders
         [TestMethod]
         public void ShouldCreateModelWithNumber()
         {
+            // Arrange
             ArgumentsModelBuilder argumentsModelBuilder = new ArgumentsModelBuilder();
             argumentsModelBuilder.WithNumber(33);
+
+            // Act
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
+            // Assert
             Assert.AreEqual(33, argumentsModel.Number);
             Assert.IsTrue(argumentsModel.NumberProvided);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
@@ -40,10 +48,14 @@ namespace numfacts.test.unit.Builders
         [TestMethod]
         public void ShouldCreateModelWithRandomNumberBoolean()
         {
+            // Arrange
             ArgumentsModelBuilder argumentsModelBuilder = new ArgumentsModelBuilder();
             argumentsModelBuilder.WithRandomNumber();
+
+            // Act
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
+            // Assert
             Assert.AreEqual(int.MinValue, argumentsModel.Number);
             Assert.IsFalse(argumentsModel.NumberProvided);
             Assert.AreEqual(true, argumentsModel.RandomNumber);
@@ -55,10 +67,14 @@ namespace numfacts.test.unit.Builders
         [TestMethod]
         public void ShouldCreateModelWithMathFactBoolean()
         {
+            // Arrange
             ArgumentsModelBuilder argumentsModelBuilder = new ArgumentsModelBuilder();
             argumentsModelBuilder.WithMathFact();
+
+            // Act
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
+            // Assert
             Assert.AreEqual(int.MinValue, argumentsModel.Number);
             Assert.IsFalse(argumentsModel.NumberProvided);
             Assert.AreEqual(false, argumentsModel.RandomNumber);
@@ -70,10 +86,14 @@ namespace numfacts.test.unit.Builders
         [TestMethod]
         public void ShouldCreateModelWithTriviaFactBoolean()
         {
+            // Arrange
             ArgumentsModelBuilder argumentsModelBuilder = new ArgumentsModelBuilder();
             argumentsModelBuilder.WithTriviaFact();
+
+            // Act
             ArgumentsModel argumentsModel = argumentsModelBuilder.Build();
 
+            // Assert
             Assert.AreEqual(int.MinValue, argumentsModel.Number);
             Assert.IsFalse(argumentsModel.NumberProvided);
             Assert.AreEqual(false, argumentsModel.RandomNumber);

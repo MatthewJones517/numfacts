@@ -12,9 +12,13 @@ namespace numfacts.test.unit.Workers
         [TestMethod]
         public void ShouldSeparateArgumentsWithNoSpaces()
         {
+            // Arrange
             string[] args = new string[1] { "/r/t" };
+
+            // Act
             string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
 
+            // Assert
             Assert.AreEqual("/r", splitArguments[0]);
             Assert.AreEqual("/t", splitArguments[1]);
         }
@@ -22,9 +26,13 @@ namespace numfacts.test.unit.Workers
         [TestMethod]
         public void ShouldSeparateArgumentsWithSpaces()
         {
+            // Arrange
             string[] args = new string[1] { "/r /t" };
+
+            // Act
             string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
 
+            // Assert
             Assert.AreEqual("/r", splitArguments[0]);
             Assert.AreEqual("/t", splitArguments[1]);
         }
@@ -32,9 +40,13 @@ namespace numfacts.test.unit.Workers
         [TestMethod]
         public void ShouldSeparateArgumentsInSeparateElements()
         {
+            // Arrange
             string[] args = new string[2] { "33" , "/r/t" };
+
+            // Act
             string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
 
+            // Assert
             Assert.AreEqual("33", splitArguments[0]);
             Assert.AreEqual("/r", splitArguments[1]);
             Assert.AreEqual("/t", splitArguments[2]);
@@ -43,9 +55,13 @@ namespace numfacts.test.unit.Workers
         [TestMethod]
         public void ShouldSeparateArgumentsInSeparateElementsWithSpaces()
         {
+            // Arrange
             string[] args = new string[2] { "33", "/r /t" };
+
+            // Act
             string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
 
+            // Assert
             Assert.AreEqual("33", splitArguments[0]);
             Assert.AreEqual("/r", splitArguments[1]);
             Assert.AreEqual("/t", splitArguments[2]);
@@ -54,9 +70,13 @@ namespace numfacts.test.unit.Workers
         [TestMethod]
         public void ShouldNotSeparateProperlySpacedElements()
         {
+            // Arrange
             string[] args = new string[3] { "33", "/r", "/t" };
+
+            // Act
             string[] splitArguments = ArgumentsHandler.BreakApartArguments(args);
 
+            // Assert
             Assert.AreEqual("33", splitArguments[0]);
             Assert.AreEqual("/r", splitArguments[1]);
             Assert.AreEqual("/t", splitArguments[2]);
@@ -68,7 +88,10 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenInvalidArgumentIsPassedIn()
         {
+            // Arrange
             string[] args = new string[3] { "33", "/m", "sdflkjdsfs" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
         }
 
@@ -76,16 +99,23 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionIfNumberIsNotFirstArgument()
         {
+            // Arrange
             string[] args = new string[2] { "/m", "33" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
         }
 
         [TestMethod]
         public void ShouldCreateModelWithSingleIntegerArgument()
         {
+            // Arrange
             string[] args = new string[1] { "33" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             Assert.AreEqual(33, argumentsModel.Number);
             Assert.IsTrue(argumentsModel.NumberProvided);
         }
@@ -93,9 +123,13 @@ namespace numfacts.test.unit.Workers
         [TestMethod]
         public void ShouldCreateModelWithAllPossibleArguments()
         {
+            // Arrange
             string[] args = new string[4] { "33", "/r", "/m", "/t" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             Assert.AreEqual(33, argumentsModel.Number);
             Assert.IsTrue(argumentsModel.RandomNumber);
             Assert.IsTrue(argumentsModel.MathFact);
@@ -108,44 +142,56 @@ namespace numfacts.test.unit.Workers
         [TestMethod]
         public void ShouldConsiderModelValidWithNumberAndMathFact()
         {
+            // Arrange
             string[] args = new string[2] { "33", "/m" };
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Act
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
 
+            // Assert
             Assert.IsTrue(modelIsValid);
         }
 
         [TestMethod]
         public void ShouldConsiderModelValidWithNumberAndTriviaFact()
         {
+            // Arrange
             string[] args = new string[2] { "33", "/t" };
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Act
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
 
+            // Assert
             Assert.IsTrue(modelIsValid);
         }
 
         [TestMethod]
         public void ShouldConsiderModelValidWithRandomNumberAndMathFact()
         {
+            // Arrange
             string[] args = new string[2] { "/r", "/m" };
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Act
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
 
+            // Assert
             Assert.IsTrue(modelIsValid);
         }
 
         [TestMethod]
         public void ShouldConsiderModelValidWithRandomNumberAndTriviaFact()
         {
+            // Arrange
             string[] args = new string[2] { "/r", "/t" };
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Act
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
 
+            // Assert
             Assert.IsTrue(modelIsValid);
         }
 
@@ -153,9 +199,13 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenBothNumberAndRandomNumberAreRequested()
         {
+            // Arrange
             string[] args = new string[2] { "33", "/r" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
         }
 
@@ -163,9 +213,13 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenBothMathAndTriviaFactsAreRequested()
         {
+            // Arrange
             string[] args = new string[2] { "/m", "/t" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
         }
 
@@ -173,9 +227,13 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenNumberIsProvidedButFactIsNot()
         {
+            // Arrange
             string[] args = new string[1] { "33" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
         }
 
@@ -183,9 +241,13 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenRandomNumberIsRequestedButFactIsNot()
         {
+            // Arrange
             string[] args = new string[1] { "/r" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
         }
 
@@ -193,9 +255,13 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenMathFactIsProvidedButNumberIsNot()
         {
+            // Arrange
             string[] args = new string[1] { "/m" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
         }
 
@@ -203,9 +269,13 @@ namespace numfacts.test.unit.Workers
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldThrowExceptionWhenTriviaFactIsProvidedButNumberIsNot()
         {
+            // Arrange
             string[] args = new string[1] { "/t" };
+
+            // Act
             ArgumentsModel argumentsModel = ArgumentsHandler.CreateArgumentsModelFromUserInput(args);
 
+            // Assert
             bool modelIsValid = ArgumentsHandler.ValidateArgumentsModel(argumentsModel);
         }
     }
